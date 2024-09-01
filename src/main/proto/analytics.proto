@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package analytics;
+
+// Definicion del mensaje que queremos estandarizar para manejo de analitica en nuestros diferentes stack tecnologico.
+// Tecnologias soportadas actualmente: JavaScript, TypeScript, Swift, Java y Kotlin
+  message AnalyticsEvent {
+  string event_type = 1;
+  string user_id = 2;
+  string timestamp = 3;
+  map<string, string> attributes = 4;
+}
