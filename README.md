@@ -153,8 +153,67 @@ AnalyticsEvent Binario:
 ```
 
 ## Cliente Kotlin
-```kotlin
 
+### Correr Programa
+
+```shell
+$ mvn exec:java -Dexec.mainClass="com.example.Main"
+```
+
+### Ejemplo:
+
+```kotlin
+package com.example
+
+import analytics.Analytics
+import com.google.protobuf.util.JsonFormat
+
+fun main() {
+    println("Consumiendo modelo generico en Java")
+
+    val analyticsEvent = Analytics.AnalyticsEvent.newBuilder()
+        .setEventType("tipo-evento-001")
+        .setUserId("user-id-001")
+        .setTimestamp("2023-10-23T10:15:30Z")
+        .putAllAttributes(mapOf("key-a" to "value-a", "key-b" to "value-b"))
+        .build()
+
+    // proto message
+    println("AnalyticsEvent Message: \n" + analyticsEvent);
+    // serializar a json
+    println("AnalyticsEvent JSON: \n" + JsonFormat.printer().print(analyticsEvent));
+    // serializar a binario
+    println("AnalyticsEvent Binario: \n" + analyticsEvent.toByteArray())
+}
+
+Salida:
+
+Consumiendo modelo generico en Java
+AnalyticsEvent Message:
+event_type: "tipo-evento-001"
+user_id: "user-id-001"
+timestamp: "2023-10-23T10:15:30Z"
+attributes {
+    key: "key-a"
+    value: "value-a"
+}
+attributes {
+    key: "key-b"
+    value: "value-b"
+}
+
+AnalyticsEvent JSON:
+{
+    "eventType": "tipo-evento-001",
+    "userId": "user-id-001",
+    "timestamp": "2023-10-23T10:15:30Z",
+    "attributes": {
+        "key-a": "value-a",
+        "key-b": "value-b"
+    }
+}
+AnalyticsEvent Binario:
+[B@52fa237
 ```
 
 ## Cliente TypeScript
