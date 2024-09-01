@@ -65,6 +65,7 @@ $ tree target/generated-sources/protobuf/                                       
 ## Cliente Java
 
 ### Linter Codigo
+
 ```bash
 $ cd protobuf-kotlin-js-swift/java-client
 $ mvn spotless:check
@@ -72,6 +73,12 @@ $ mvn spotless:apply
 ...
 [INFO] Spotless.Java is keeping 2 files clean - 0 were changed to be clean, 1 were already clean, 1 were skipped because caching determined they were already clean
 ...
+```
+
+### Correr Programa
+
+```shell
+$ mvn exec:java -Dexec.mainClass="org.example.App"
 ```
 
 ### Ejemplo:
@@ -88,7 +95,7 @@ import org.example.analytics.Analytics;
 
 public class App {
     public static void main(String[] args) throws InvalidProtocolBufferException {
-        System.out.println("Creando modelo generico en Java");
+        System.out.println("Consumiendo modelo generico en Java");
         final Analytics.AnalyticsEvent.Builder builder = Analytics.AnalyticsEvent.newBuilder();
         final Instant now = Instant.now();
         final Timestamp timestamp =
@@ -106,21 +113,22 @@ public class App {
 
         final Analytics.AnalyticsEvent analyticsEvent = builder.build();
 
-        System.out.println("com.google.protobuf.GeneratedMessage: \n" + analyticsEvent);
-        System.out.println("----------------------");
+        // proto message
+        System.out.println("AnalyticsEvent Message: \n" + analyticsEvent);
         // serializar a json
-        System.out.println("JSON format: \n" + JsonFormat.printer().print(analyticsEvent));
+        System.out.println("AnalyticsEvent JSON: \n" + JsonFormat.printer().print(analyticsEvent));
         // serializar a binario
-        System.out.println("Protobuf format: \n" + analyticsEvent.toByteArray());
+        System.out.println("AnalyticsEvent Binario: \n" + analyticsEvent.toByteArray());
     }
 }
 
 Salida:
 
-com.google.protobuf.GeneratedMessage:
+Consumiendo modelo generico en Java
+AnalyticsEvent Message:
 event_type: "tipo-evento-001"
 user_id: "user-id-001"
-timestamp: "2024-09-01T05:55:36.289177Z"
+timestamp: "2024-09-01T07:36:38.493988Z"
 attributes {
     key: "key-a"
     value: "value-a"
@@ -130,23 +138,18 @@ attributes {
     value: "value-b"
 }
 
-----------------------
-
-JSON format:
-        {
-        "eventType": "tipo-evento-001",
-        "userId": "user-id-001",
-        "timestamp": "2024-09-01T05:55:36.289177Z",
-        "attributes": {
+AnalyticsEvent JSON:
+{
+    "eventType": "tipo-evento-001",
+    "userId": "user-id-001",
+    "timestamp": "2024-09-01T07:36:38.493988Z",
+    "attributes": {
         "key-a": "value-a",
         "key-b": "value-b"
-        }
-        }
-
-----------------------
-
-Protobuf format:
-        [B@587e5365
+    }
+}
+AnalyticsEvent Binario:
+        [B@4988d8b8
 ```
 
 ## Cliente Kotlin
@@ -154,13 +157,68 @@ Protobuf format:
 
 ```
 
-## Cliente JavaScript
-```javascript
-
-```
 ## Cliente TypeScript
-```typescript
 
+### Correr Programa
+
+```shell
+$ npm install -g typescript
+$ npm run setup
+$ npm run start
+```
+
+### Ejemplo:
+
+```typescript
+import * as analytics from './analytics_pb';
+
+class ExtendedAnalyticsEvent extends analytics.AnalyticsEvent {
+    toJSON() {
+        const attributesMap = this.getAttributesMap();
+        const attributesObject: { [key: string]: string } = {};
+        attributesMap.forEach((value, key) => {
+            attributesObject[key] = value;
+        });
+
+        return {
+            eventType: this.getEventType(),
+            userId: this.getUserId(),
+            timestamp: this.getTimestamp(),
+            attributes: attributesObject
+        };
+    }
+}
+
+console.log("Consumiendo modelo generico en TypeScript");
+
+const analyticsEvent = new ExtendedAnalyticsEvent();
+analyticsEvent.setEventType("tipo-evento-001");
+analyticsEvent.setUserId("user-id-001");
+const attributesMap = analyticsEvent.getAttributesMap();
+attributesMap.set("key-a", "value-a");
+attributesMap.set("key-b", "value-b");
+
+// proto message
+console.log("AnalyticsEvent Message: " + analyticsEvent);
+// serializar a json
+console.log("AnalyticsEvent JSON: " + JSON.stringify(analyticsEvent, null, 2));
+// serializar a binario
+console.log("AnalyticsEvent Binario: " + analyticsEvent.serializeBinary());
+
+Salida:
+
+Consumiendo modelo generico en TypeScript
+AnalyticsEvent Message: tipo-evento-001,user-id-001,,key-a,value-a,key-b,value-b
+AnalyticsEvent JSON: {
+    "eventType": "tipo-evento-001",
+    "userId": "user-id-001",
+    "timestamp": "",
+    "attributes": {
+        "key-a": "value-a",
+        "key-b": "value-b"
+    }
+}
+AnalyticsEvent Binario: 10,15,116,105,112,1
 ```
 
 ## Cliente Swift

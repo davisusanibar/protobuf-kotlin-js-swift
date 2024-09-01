@@ -1,0 +1,22 @@
+{
+  "name": "typescript-client",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "scripts": {
+    "clean": "rm -rf dist node_modules package-lock.json",
+    "setup": "npm install && tsc && cp src/analytics_pb.js dist/",
+    "start": "node dist/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.12",
+    "ts-protoc-gen": "^0.15.0"
+  },
+  "dependencies": {
+    "google-protobuf": "^3.21.4",
+    "protobufjs": "^7.4.0"
+  }
+}

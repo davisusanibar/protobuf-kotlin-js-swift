@@ -12,7 +12,7 @@ import org.example.analytics.Analytics;
 
 public class App {
     public static void main(String[] args) throws InvalidProtocolBufferException {
-        System.out.println("Creando modelo generico en Java");
+        System.out.println("Consumiendo modelo generico en Java");
         final Analytics.AnalyticsEvent.Builder builder = Analytics.AnalyticsEvent.newBuilder();
         final Instant now = Instant.now();
         final Timestamp timestamp =
@@ -30,11 +30,11 @@ public class App {
 
         final Analytics.AnalyticsEvent analyticsEvent = builder.build();
 
-        System.out.println("com.google.protobuf.GeneratedMessage: \n" + analyticsEvent);
-        System.out.println("----------------------");
+        // proto message
+        System.out.println("AnalyticsEvent Message: \n" + analyticsEvent);
         // serializar a json
-        System.out.println("JSON format: \n" + JsonFormat.printer().print(analyticsEvent));
+        System.out.println("AnalyticsEvent JSON: \n" + JsonFormat.printer().print(analyticsEvent));
         // serializar a binario
-        System.out.println("Protobuf format: \n" + analyticsEvent.toByteArray());
+        System.out.println("AnalyticsEvent Binario: \n" + analyticsEvent.toByteArray());
     }
 }
