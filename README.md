@@ -281,6 +281,39 @@ AnalyticsEvent Binario: 10,15,116,105,112,1
 ```
 
 ## Cliente Swift
-```java
 
+### Ejemplo:
+
+```java
+class ProtobufTest {
+    
+    func usarModeloGenerico() {
+        var analyticsEvent = Analytics_AnalyticsEvent()
+        analyticsEvent.eventType = "tipo-evento-001"
+        analyticsEvent.userID = "user-id-001"
+        print("Consumiendo modelo generico en Java")
+        // proto message
+        print("AnalyticsEvent Message: \(analyticsEvent)")
+        do {
+            let jsonString = try analyticsEvent.jsonString()
+            let serializedData = try analyticsEvent.serializedData()
+            // serializar a json
+            print("AnalyticsEvent JSON: \(jsonString)");
+            // serializar a binario
+            print("AnalyticsEvent Binario: \(serializedData)");
+        } catch {
+            print("Error conversion: \(error)")
+        }
+    }
+}
+
+Salida:
+
+Consumiendo modelo generico en Java
+AnalyticsEvent Message: swift_client.Analytics_AnalyticsEvent:
+event_type: "tipo-evento-001"
+user_id: "user-id-001"
+
+AnalyticsEvent JSON: {"eventType":"tipo-evento-001","userId":"user-id-001"}
+AnalyticsEvent Binario: 30 bytes
 ```

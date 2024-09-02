@@ -1,0 +1,37 @@
+# MacOS y Xcode
+.DS_Store
+build/
+DerivedData/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Directorios de usuario Xcode (estos son específicos del usuario y no deben ser compartidos)
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# Archivos de configuraciones del proyecto (pueden ser útiles dependiendo del proyecto)
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Swift Package Manager
+.build/
+
+# Carthage
+Carthage/Build/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Shell-specific (agregar si se usa)
+*.zsh_history
+*.zsh_sessions
+*.bash_history
