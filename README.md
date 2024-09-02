@@ -22,7 +22,7 @@ y generamos los contratos para cada lenguaje
 No es posible compartir la definicion para reuso, se toma la decisión de cada tecnología 
 crecer de manera independiente.
 
-[reuso-logica-negocio-no-ideal.puml](src/main/plantuml/reuso-logica-negocio-no-ideal.puml)
+![reuso-logica-negocio-no-ideal.png](src/main/plantuml/reuso-logica-negocio-no-ideal.png)
 
 # Configuración del Proyecto
 
