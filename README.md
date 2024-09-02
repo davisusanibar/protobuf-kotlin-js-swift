@@ -8,21 +8,21 @@ Este proyecto utiliza Protocol Buffers (protobuf) para definir modelos genérico
 
 Compartimos definicion multiplataforma y reusamos en los difernetes stacks tecnológicos:
 
-![reuso-logica-negocio-ideal.png](target/generated-docs/reuso-logica-negocio-ideal.png)
+![reuso-logica-negocio-ideal.png](src/main/plantuml/reuso-logica-negocio-ideal.png)
 
 ## Caso Uso: Crear logica negocio Protobuf
 
 No es posible compartir la definicion para reuso, nos alineamos a nivel de contrato `*.proto` 
 y generamos los contratos para cada lenguaje
 
-![reuso-logica-negocio-protobuf.png](target/generated-docs/reuso-logica-negocio-protobuf.png)
+![reuso-logica-negocio-protobuf.png](src/main/plantuml/reuso-logica-negocio-protobuf.png)
 
 ## Caso Uso: Crear logica negocio Independiente
 
 No es posible compartir la definicion para reuso, se toma la decisión de cada tecnología 
 crecer de manera independiente.
 
-![reuso-logica-negocio-no-ideal.png](target/generated-docs/reuso-logica-negocio-no-ideal.png)
+[reuso-logica-negocio-no-ideal.puml](src/main/plantuml/reuso-logica-negocio-no-ideal.puml)
 
 # Configuración del Proyecto
 
