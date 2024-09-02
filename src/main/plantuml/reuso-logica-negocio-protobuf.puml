@@ -1,0 +1,8 @@
+
+@startuml
+LogicaNegocioProtobuf --> LogicaNegocioMultiPlataformaTS : generar modelo TS
+LogicaNegocioProtobuf --> LogicaNegocioMultiPlataformaAndroid : generar modelo Android
+LogicaNegocioProtobuf --> LogicaNegocioMultiPlataformaiOS : generar modelo iOS
+@enduml
+
+

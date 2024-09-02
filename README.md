@@ -2,6 +2,28 @@
 
 Este proyecto utiliza Protocol Buffers (protobuf) para definir modelos genéricos y poder generar el código correspondiente en varios lenguajes: Java, Kotlin, JavaScript y TypeScript.
 
+# Propuesta
+
+## Caso Uso: Crear logica negocio Multiplataforma
+
+Compartimos definicion multiplataforma y reusamos en los difernetes stacks tecnológicos:
+
+![reuso-logica-negocio-ideal.png](target/generated-docs/reuso-logica-negocio-ideal.png)
+
+## Caso Uso: Crear logica negocio Protobuf
+
+No es posible compartir la definicion para reuso, nos alineamos a nivel de contrato `*.proto` 
+y generamos los contratos para cada lenguaje
+
+![reuso-logica-negocio-protobuf.png](target/generated-docs/reuso-logica-negocio-protobuf.png)
+
+## Caso Uso: Crear logica negocio Independiente
+
+No es posible compartir la definicion para reuso, se toma la decisión de cada tecnología 
+crecer de manera independiente.
+
+![reuso-logica-negocio-no-ideal.png](target/generated-docs/reuso-logica-negocio-no-ideal.png)
+
 # Configuración del Proyecto
 
 ## Descargar proyecto

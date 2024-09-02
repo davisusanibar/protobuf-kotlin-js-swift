@@ -16,6 +16,7 @@
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
         <exec-maven-plugin.version>3.4.1</exec-maven-plugin.version>
         <grpc-kotlin-stub.version>1.4.1</grpc-kotlin-stub.version>
+        <plantuml-mit.version>1.2024.6</plantuml-mit.version>
     </properties>
 
     <build>
@@ -224,5 +225,41 @@
             <artifactId>protobuf-kotlin</artifactId>
             <version>${protobuf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.plantuml</groupId>
+            <artifactId>plantuml-mit</artifactId>
+            <version>${plantuml-mit.version}</version>
+        </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>plantuml</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <property name="plantuml.jar.path" value="${settings.localRepository}/net/sourceforge/plantuml/plantuml-mit/${plantuml-mit.version}/plantuml-mit-${plantuml-mit.version}.jar"/>
+                                        <mkdir dir="${project.build.directory}/generated-docs"/>
+                                        <java jar="${plantuml.jar.path}" fork="true">
+                                            <arg line="-o ${project.build.directory}/generated-docs src/main/plantuml/*.puml"/>
+                                        </java>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

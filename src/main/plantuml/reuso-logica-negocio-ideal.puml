@@ -1,0 +1,6 @@
+
+@startuml
+LogicaApplicacionTS -> LogicaNegocioMultiPlataforma : consumir modelo generico
+LogicaApplicacionAndroid -> LogicaNegocioMultiPlataforma : consumir modelo generico
+LogicaApplicacioniOS -> LogicaNegocioMultiPlataforma : consumir modelo generico
+@enduml

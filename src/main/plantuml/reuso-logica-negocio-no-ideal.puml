@@ -1,0 +1,5 @@
+@startuml
+LogicaApplicacionTS -> LogicaNegocioMultiPlataformaTS : consumir modelo custom TS
+LogicaApplicacionAndroid -> LogicaNegocioMultiPlataformaAndroid : consumir modelo custom Android
+LogicaApplicacioniOS -> LogicaNegocioMultiPlataformaiOS : consumir modelo custom iOS
+@enduml
